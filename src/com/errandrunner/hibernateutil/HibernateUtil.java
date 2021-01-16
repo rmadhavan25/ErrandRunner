@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.errandrunner.models.CookModel;
 import com.errandrunner.models.UserModel;
 
 public class HibernateUtil {
@@ -24,7 +25,7 @@ public class HibernateUtil {
     settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
     settings.put(Environment.URL, "jdbc:mysql://localhost:3306/errand_runner?useSSL=false");
     settings.put(Environment.USER, "root");
-    settings.put(Environment.PASS, "root");
+    settings.put(Environment.PASS, "sudha10");
     settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
     settings.put(Environment.SHOW_SQL, "true");
@@ -35,6 +36,7 @@ public class HibernateUtil {
 
     configuration.setProperties(settings);
     configuration.addAnnotatedClass(UserModel.class);
+    //configuration.addAnnotatedClass(CookModel.class);
 
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
       .applySettings(configuration.getProperties()).build();

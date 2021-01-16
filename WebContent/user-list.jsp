@@ -4,6 +4,7 @@
 <html>
 <head>
  <title>User Management Application</title>
+
 </head>
 <body>
   <h1>User Management</h1>
@@ -19,15 +20,14 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Country</th>
-                <th>Actions</th>
+                <th>Phone</th>
             </tr>
             <c:forEach var="user" items="${listUser}">
                 <tr>
                     <td><c:out value="${user.id}" /></td>
                     <td><c:out value="${user.name}" /></td>
                     <td><c:out value="${user.email}" /></td>
-                    <td><c:out value="${user.country}" /></td>
+                    <td><c:out value="${user.phone}" /></td>
                     <td>
                      <a href="edit?id=<c:out value='${user.id}' />">Edit</a>
                      &nbsp;&nbsp;&nbsp;&nbsp;

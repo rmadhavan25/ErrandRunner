@@ -1,6 +1,5 @@
 package com.errandrunner.dao;
 
-
 import java.util.List;
 
 
@@ -9,17 +8,14 @@ import org.hibernate.Transaction;
 
 
 import com.errandrunner.hibernateutil.HibernateUtil;
-import com.errandrunner.models.UserModel;
+import com.errandrunner.models.CookModel;
 
 
 
-public class UserDao {
+public class CookDao {
 
-    /**
-     * Save User
-     * @param user
-     */
-    public void saveUser(UserModel user) {
+    
+    public void saveCook(CookModel user) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -40,7 +36,7 @@ public class UserDao {
      * Update User
      * @param user
      */
-    public void updateUser(UserModel user) {
+    public void updateCook(CookModel user) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -61,7 +57,7 @@ public class UserDao {
      * Delete User
      * @param id
      */
-    public void deleteUser(int id) {
+    public void deleteCook(int id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -69,7 +65,7 @@ public class UserDao {
             transaction = session.beginTransaction();
 
             // Delete a user object
-            UserModel user = session.get(UserModel.class, id);
+            CookModel user = session.get(CookModel.class, id);
             if (user != null) {
                 session.delete(user);
                 System.out.println("user is deleted");
@@ -90,15 +86,15 @@ public class UserDao {
      * @param id
      * @return
      */
-    public UserModel getUser(int id) {
+    public CookModel getCook(int id) {
 
         Transaction transaction = null;
-        UserModel user = null;
+        CookModel user = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
-            user = session.get(UserModel.class, id);
+            user = session.get(CookModel.class, id);
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
@@ -116,16 +112,16 @@ public class UserDao {
      */
     //@SuppressWarnings("unchecked")
     @SuppressWarnings("unchecked")
-	public List < UserModel > getAllUser() {
+	public List < CookModel > getAllCook() {
 
         Transaction transaction = null;
-        List < UserModel > listOfUser = null;
+        List < CookModel > listOfUser = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
 
-            listOfUser = session.createQuery("from UserModel").list();
+            listOfUser = session.createQuery("from CookModel").list();
 
             // commit transaction
             transaction.commit();
