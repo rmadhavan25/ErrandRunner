@@ -6,11 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="cook")
-public class CookModel {
+public class CookModel implements Model {
 	@Id
 	@GeneratedValue
 	 @Column(name="id")
@@ -19,32 +21,27 @@ public class CookModel {
 	@Column(name="address")
 	private String address;
 	
-	 @Column(name="addressProof")
-	private Blob addressProof;
+//	 @Column(name="addressProof")
+//	private Blob addressProof;
 	 
-	 @Column(name="verified")
-	private Short verified;
-	 
-	 @Column(name="userid")
-	private int userid;
+//	 @Column(name="verified")
+//	private Short verified;
 	
+	@OneToOne
+	@JoinColumn(name="userid") 
+	private UserModel user;
+	 
 	protected CookModel() {
 	}
-	public CookModel(int id, String address, Blob addressProof, Short verified, int userid) {
-		super();
-		this.id = id;
-		this.address = address;
-		this.addressProof = addressProof;
-		this.verified = verified;
-		this.userid = userid;
-	}
 	
-	public CookModel(String address, Blob addressProof, Short verified, int userid) {
+	
+	
+	public CookModel(String address, UserModel user) {
 		super();
 		this.address = address;
-		this.addressProof = addressProof;
-		this.verified = verified;
-		this.userid = userid;
+//		this.addressProof = addressProof;
+//		this.verified = 0;
+		this.user = user;
 	}
 	
 	public int getId() {
@@ -59,22 +56,22 @@ public class CookModel {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Blob getAddressProof() {
-		return addressProof;
+//	public Blob getAddressProof() {
+//		return addressProof;
+//	}
+//	public void setAddressProof(Blob addressProof) {
+//		this.addressProof = addressProof;
+//	}
+//	public Short getVerified() {
+//		return verified;
+//	}
+//	public void setVerified(Short verified) {
+//		this.verified = verified;
+//	}
+	public UserModel getUser() {
+		return user;
 	}
-	public void setAddressProof(Blob addressProof) {
-		this.addressProof = addressProof;
-	}
-	public Short getVerified() {
-		return verified;
-	}
-	public void setVerified(Short verified) {
-		this.verified = verified;
-	}
-	public int getUserid() {
-		return userid;
-	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUser(UserModel user) {
+		this.user = user;
 	}
 }

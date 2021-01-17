@@ -62,7 +62,7 @@ a {
  </style>
 </head>
 <body>
- <form action="insert" method = "post">
+ <form action="user/sign-up/user" method = "post">
   <div class="container">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>

@@ -109,6 +109,26 @@ public class UserDao {
         }
         return user;
     }
+    
+    public UserModel getUserByPhone(String phone) {
+
+        Transaction transaction = null;
+        UserModel user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            user = session.get(UserModel.class, phone);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return user;
+    }
 
     /**
      * Get all Users

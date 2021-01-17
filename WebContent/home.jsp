@@ -89,21 +89,21 @@ a.cardButton:link, a.cardButton:visited {
   <img src="https://pbs.twimg.com/profile_images/1241754669409611778/TGxfyMfe_400x400.jpg" alt="John" style="width:100%">
   <h1>Errand Runner</h1>
   <p class="title">Serving People</p>
-  <a  class="cardButton" href="userRegister.jsp" target="_blank">Register</a>
+  <a  class="cardButton" href="errandRegister.jsp">Register</a>
 </div>
 
 <div class="card">
   <img src="https://zboostyourlife.files.wordpress.com/2010/12/smart-phone-savvy.jpg" alt="user" style="width:100%">
   <h1>New User</h1>
   <p class="title">Looking for<br> service</p>
-  <a  class="cardButton" href="userRegister.jsp" target="_blank">Register</a>
+  <a  class="cardButton" href="userRegister.jsp">Register</a>
 </div>
 
 <div class="card">
   <img src="https://thumbs.dreamstime.com/b/beautiful-woman-cooking-soup-woman-cuts-knife-vegetables-vector-illustration-beautiful-woman-cooking-soup-woman-cuts-149072635.jpg" alt="John" style="width:100%">
   <h1>Home Chef</h1>
   <p class="title">Delicious Food<br> From<br> Home</p>
-  <a  class="cardButton" href="userRegister.jsp" target="_blank">Register</a>
+  <a  class="cardButton" href="cookRegister.jsp">Register</a>
 </div>
 
 </div> 
