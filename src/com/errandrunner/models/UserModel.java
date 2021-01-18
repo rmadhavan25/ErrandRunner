@@ -8,14 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.apache.tomcat.util.modeler.BaseModelMBean;
+import org.hibernate.annotations.NamedQuery;
+
 import com.errandrunner.models.Model;
 
 @Entity
 @Table(name="users")
+@NamedQuery(name="get_user", query="from UserModel where phone= :phno")
 public class UserModel implements Model{
  
 	 @Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name="id")
 	 protected int id;
 	 

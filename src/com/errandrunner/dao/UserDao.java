@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.hibernate.query.Query;
 
 import com.errandrunner.hibernateutil.HibernateUtil;
 import com.errandrunner.models.UserModel;
@@ -118,11 +118,14 @@ public class UserDao {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
-            user = session.get(UserModel.class, phone);
+            //user = session.get(UserModel.class, phone);
+            Query<UserModel> query = session.createNamedQuery("get_user", UserModel.class);
+            query.setParameter("phno", phone);
+            user = query.getResultList().stream().findFirst().orElse(null);
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && user!=null) {
                 transaction.rollback();
             }
             e.printStackTrace();

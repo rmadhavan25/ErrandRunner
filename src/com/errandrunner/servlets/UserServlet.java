@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
     	  		NewUser.doPostNewUser(request, response);
     	  		break;
     	  	case "sign-in": 
-//    	  		NewUser.doPostLogin(request, response);
+    	  		Login.login(request, response);
     	  		break;
     	  	default:
     	  		HelperFunctions.notFound(request, response);
@@ -153,32 +153,42 @@ class NewUser {
 
 class Login {
 	
-	static void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	static void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		 String phone = request.getParameter("phone");
 	     String password = request.getParameter("psw");
+	     //System.out.println(phone);
+	     authenticate(phone, password, request,response);
 	     
-	     authenticate(phone, password, response);
 	     
 	}
 	
-	static void authenticate(String phone, String password, HttpServletResponse response) throws IOException {
+	static void authenticate(String phone, String password,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String hexPassword = HelperFunctions.toHex(password);
 		UserModel user = new UserDao().getUserByPhone(phone);
-		
+		//request.getSession().removeAttribute("message");
 		if(user != null) {
 			String userPassword = user.getPassword();
 			if(userPassword.equals(hexPassword)) {
+				
 				Cookie cookie = new Cookie(user.getName(), user.getId() + "");
 				response.addCookie(cookie);
-				response.sendRedirect("/ErrandRunner");
-				return;
+				response.sendRedirect("/ErrandRunner/userHome.jsp");
+				
 			} else {
-				response.sendError(400);
-				return ;
+				System.out.println("Invalid Password");
+				request.setAttribute("message", "Invalid Password");
+				//response.sendRedirect(request.getHeader("Referer"));
+				new MainServlet().doGet(request, response);
+				//request.getRequestDispatcher("/home.jsp").forward(request, response);
+				//response.sendRedirect(request.getRequestURI());
+				
 			}
 		} else {
-			response.sendError(400);
-			return;
+			System.out.println("User doesn't exist");
+			request.setAttribute("message", "User doesn't exist");
+			//response.sendRedirect(request.getHeader("Referer"));
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			
 		}
 		
 	}
