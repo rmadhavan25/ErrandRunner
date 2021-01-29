@@ -21,7 +21,7 @@ import com.errandrunner.models.UserServiceRequestModel;
 /**
  * Servlet implementation class ErunnerServlet
  */
-@WebServlet(urlPatterns = {"/erunner","/erunner-request/service","/erunner-request/delivery","/erunner-service/accept","/erunner-delivery/accept"})
+@WebServlet(urlPatterns = {"/erunner","/erunner-request/service","/erunner-request/delivery","/erunner-service/accept","/erunner-delivery/accept","/erunner-complete/service","/erunner-complete/delivery"})
 public class ErunnerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,6 +49,10 @@ public class ErunnerServlet extends HttpServlet {
 	        	//System.out.println("tracked the address");
 	        	Errand.doGetParticular(request,response);
 	        }
+	        else if(action.equals("erunner-complete")) {
+	        	Transaction.completeErrand(request,response);
+	        	response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
+	        }
 	        	
 		}
 		catch (Exception ex) {
@@ -69,6 +73,7 @@ public class ErunnerServlet extends HttpServlet {
 	  	  switch(action) {
 	  	  	case "accept":
 		  		Transaction.assignNewErunner(request,response);
+		  		break;
 	  	  	default:
 	  	  		HelperFunctions.notFound(request, response);
 	  	  }
@@ -173,6 +178,29 @@ class Transaction{
 	
 	}
 	
+	static void completeErrand(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			String action = request.getServletPath().split("/")[2];
+			
+			switch(action) {
+			case "service":
+				Transaction.completeService(request,response);
+				response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
+				break;
+			case "delivery":
+				Transaction.completeDelivery(request,response);
+				response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
+				break;
+			default:
+				HelperFunctions.notFound(request, response);
+				break;
+			}
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	
 	static void newServiceErunner(HttpServletRequest request, HttpServletResponse response) {
 		
 		int serviceid = Integer.parseInt(request.getParameter("serviceId"));
@@ -236,5 +264,36 @@ class Transaction{
         UserDeliveryRequestModel updatedErunner = new UserDeliveryRequestModel(deliveryid,pickupAddress,dropAddress,items,description,phone,(short)1,userid,erunnerid);
         //System.out.println("inside the required block 3");
         new UserRequestDao().updateDelivery(updatedErunner);
+	}
+	
+	static void completeService(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("serviceId"));
+		UserServiceRequestModel service = new UserRequestDao().getUserServicesById(id);
+		String jobType = service.getJobType();
+        String description = service.getDescription();
+        String address = service.getAddress();
+        String phone = service.getPhone();
+        UserModel userid = service.getUserid();
+        ErunnerModel erunnerid = service.getErunner();
+        UserServiceRequestModel serviceCompleted = new UserServiceRequestModel(id,jobType,description,address,phone,(short)2,userid,erunnerid);
+        new UserRequestDao().updateService(serviceCompleted);
+		}
+	
+	static void completeDelivery(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("deliveryId"));
+		UserDeliveryRequestModel delivery = new UserRequestDao().getUserDeliveriesById(id);
+		String pickupAddress = delivery.getPickupAddress();
+		String dropAddress = delivery.getDropAddress();
+        String items = delivery.getItems();
+        String description = delivery.getDescription();
+        String phone =	delivery.getPhone();
+        UserModel userid = delivery.getUser();
+        ErunnerModel erunnerid = delivery.getErunner();
+        //System.out.println("inside the required block 2");
+        //String erunnerid = request.getParameter("erunnerid");
+        UserDeliveryRequestModel deliveryCompleted = new UserDeliveryRequestModel(id,pickupAddress,dropAddress,items,description,phone,(short)2,userid,erunnerid);
+        //System.out.println("inside the required block 3");
+        new UserRequestDao().updateDelivery(deliveryCompleted);
+		//new ErunnerDao().completeService(id);
 	}
 }

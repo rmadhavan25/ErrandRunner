@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.errandrunner.dao.CookDao;
+//import com.errandrunner.dao.CookDao;
 import com.errandrunner.dao.ErunnerDao;
 import com.errandrunner.dao.UserDao;
-import com.errandrunner.models.CookModel;
+//import com.errandrunner.models.CookModel;
 import com.errandrunner.models.ErunnerModel;
 import com.errandrunner.models.UserModel;
 
@@ -99,9 +99,9 @@ class NewUser {
 					createUser(request, response, "user");
 					 
 				    break;
-				case "cook":
-					createCook(request, response);
-					break;
+				//case "cook":
+					//createCook(request, response);
+					//break;
 				case "erunner":
 					createERunner(request, response);
 					break;
@@ -130,15 +130,15 @@ class NewUser {
         return newUser;
     }
     
-    static private void createCook(HttpServletRequest request, HttpServletResponse response)
-    throws SQLException, IOException, ServletException {
-        String address = request.getParameter("address");
-        
-        UserModel user = createUser(request, response, "cook");
-        CookModel cook = new CookModel(address, user);
-        new CookDao().saveCook(cook);
-        
-    }
+//    static private void createCook(HttpServletRequest request, HttpServletResponse response)
+//    throws SQLException, IOException, ServletException {
+//        String address = request.getParameter("address");
+//        
+//        UserModel user = createUser(request, response, "cook");
+//        CookModel cook = new CookModel(address, user);
+//        new CookDao().saveCook(cook);
+//        
+//    }
     
     static private void createERunner(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
@@ -180,7 +180,7 @@ class Login {
 				if(user.getUserType().equals("user"))
 				response.sendRedirect("/ErrandRunner/userHome.jsp");
 				else if(user.getUserType().equals("cook"))
-					response.sendRedirect("/ErrandRuner/cookHome.jsp");
+					response.sendRedirect("/ErrandRunner/cook-home.jsp");
 				else
 					response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
 				

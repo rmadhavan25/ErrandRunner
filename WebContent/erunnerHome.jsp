@@ -230,7 +230,7 @@ a.cardButton:link, a.cardButton:visited {
     <button class="myprofile-button">Myprofile</button>
     <div class="myprofile-content">
       <a  style="color:black" href="erunnerProfile.jsp">My Profile</a>
-      <a style="color:black" href="#">Orders</a>
+      <a style="color:black" href="erunnerHistory.jsp">Orders</a>
       <a style="color:black" href="home.jsp">Logout</a>
     </div>
   </div> 

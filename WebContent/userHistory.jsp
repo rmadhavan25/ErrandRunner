@@ -84,7 +84,6 @@
   <a class="active" href="#Order History">Userhome</a>
   <a href="#Services">Services</a>
   <a href="#Deliveries">Deliveries</a>
-  <a href="#Food">Food Orders</a>
 </div>
 
 <h1 class ="side-headings" style="text-align:left;">Services:</h1><hr>
@@ -158,23 +157,7 @@ for(UserDeliveryRequestModel dl : deliveryList ){
 <%} %>
 </section>
 
-<section id="Food">
-<h1 class ="side-headings" style="text-align:left;">Food Orders:</h1><hr>
 
-
-<div class="card">
-  <h1>Food</h1>
-  <p class="price"><b>cost:</b> $19.99</p>
-  <p><b>Festive Preparation</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-  <p><button>More</button></p>
-</div>
-<div class="card">
-  <h1>Food</h1>
-  <p class="price"><b>cost:</b> $19.99</p>
-  <p><b>Festive Preparation</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-  <p><button>More</button></p>
-</div>
-</section>
 
 </body>
 </html>

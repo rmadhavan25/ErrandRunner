@@ -6,14 +6,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NamedQuery;
+
 
 @Entity
 @Table(name="user_service_request")
-@NamedQuery(name="get_user_services", query="from UserServiceRequestModel where phone= :phno")
+@NamedQueries({@NamedQuery(name="get_user_services", query="from UserServiceRequestModel where phone= :phno"),@NamedQuery(name="get_user_services_byid", query="from UserServiceRequestModel where serviceid= :id")})
+@org.hibernate.annotations.NamedNativeQuery(name = "get_user_services_by_erunnerid", query = "select * from user_service_request where erunnerid=:id",resultClass = UserServiceRequestModel.class)
+
 public class UserServiceRequestModel implements Model {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

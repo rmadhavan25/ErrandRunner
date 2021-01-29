@@ -174,17 +174,8 @@ a.cardButton:hover, a.cardButton:active {
 </div>
 </div>
 
-<div class="row">
-<!---home food card-->
-<div class="card">
-  <img src="https://previews.123rf.com/images/moloko88/moloko881809/moloko88180900003/109815610-hand-drawn-typography-poster-inspirational-vector-typography-homemade-food-.jpg" alt="homefood" style="width:75%">
-  <h1>Home Food</h1>
-  <p class="title">Delicious Food<br> From any<br> home around you</p>
-  <a class="cardButton" href="default.asp">Go</a>
-  <!--<a  class="cardButton" href="default.asp" target="_blank">Register</a>-->
-</div>
 
-</div>
+
 
 </body>
 

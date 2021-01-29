@@ -15,7 +15,9 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name="user_delivery_request")
 @NamedQueries({@NamedQuery(name="get_user_deliveries", query="from UserDeliveryRequestModel where phone= :phno"),
-				@NamedQuery(name="get_all_deliveries",query="from UserDeliveryRequestModel")})
+				@NamedQuery(name="get_all_deliveries",query="from UserDeliveryRequestModel"),
+				@NamedQuery(name="get_user_deliveries_byid", query="from UserDeliveryRequestModel where deliveryid= :id")})
+@org.hibernate.annotations.NamedNativeQuery(name = "get_user_deliveries_by_erunnerid", query = "select * from user_delivery_request where erunnerid=:id",resultClass = UserDeliveryRequestModel.class)
 public class UserDeliveryRequestModel implements Model {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
