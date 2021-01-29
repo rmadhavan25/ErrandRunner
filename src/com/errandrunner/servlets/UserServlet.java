@@ -20,7 +20,7 @@ import com.errandrunner.models.UserModel;
 
 
 
-@WebServlet(urlPatterns = {"/user", "/user/sign-up/user", "/user/sign-up/cook", "/user/sign-up/erunner", "/user/sign-in"})
+@WebServlet(urlPatterns = {"/user", "/user/sign-up/user", "/user/sign-up/cook", "/user/sign-up/erunner", "/user/sign-in","/user/update/user","/user/update/erunner"})
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
    
@@ -35,6 +35,9 @@ public class UserServlet extends HttpServlet {
     	  		break;
     	  	case "sign-in": 
     	  		Login.login(request, response);
+    	  		break;
+    	  	case "update":
+    	  		UpdateUser.doPostUpdateUser(request, response);
     	  		break;
     	  	default:
     	  		HelperFunctions.notFound(request, response);
@@ -170,15 +173,22 @@ class Login {
 			String userPassword = user.getPassword();
 			if(userPassword.equals(hexPassword)) {
 				
-				Cookie cookie = new Cookie(user.getName(), user.getId() + "");
+				Cookie cookie = new Cookie(user.getUserType(),user.getId()+"");
+				cookie.setMaxAge(60*60);
+				cookie.setPath("/ErrandRunner");
 				response.addCookie(cookie);
+				if(user.getUserType().equals("user"))
 				response.sendRedirect("/ErrandRunner/userHome.jsp");
+				else if(user.getUserType().equals("cook"))
+					response.sendRedirect("/ErrandRuner/cookHome.jsp");
+				else
+					response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
 				
 			} else {
 				System.out.println("Invalid Password");
 				request.setAttribute("message", "Invalid Password");
-				//response.sendRedirect(request.getHeader("Referer"));
-				new MainServlet().doGet(request, response);
+				response.sendRedirect(request.getHeader("Referer"));
+				//new MainServlet().doGet(request, response);
 				//request.getRequestDispatcher("/home.jsp").forward(request, response);
 				//response.sendRedirect(request.getRequestURI());
 				
@@ -186,12 +196,89 @@ class Login {
 		} else {
 			System.out.println("User doesn't exist");
 			request.setAttribute("message", "User doesn't exist");
-			//response.sendRedirect(request.getHeader("Referer"));
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			response.sendRedirect(request.getHeader("Referer"));
+			//request.getRequestDispatcher("/home.jsp").forward(request, response);
 			
 		}
 		
 	}
+}
+
+class UpdateUser{
+	
+	static void doPostUpdateUser(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			String action = request.getServletPath().split("/")[3];
+			switch(action) {
+				case "user":
+					//System.out.println("about to update");
+					updateUser(request, response, "user");
+					response.sendRedirect("/ErrandRunner/userHome.jsp");
+				    break;
+				case "cook":
+					//createCook(request, response);
+					//break;
+				case "erunner":
+					updateErunner(request,response,"erunner");
+					response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
+					break;
+				default: 
+					HelperFunctions.notFound(request, response);
+					return;
+			}
+			
+		} catch(Exception ex) {
+			
+		}
+	}
+	
+	static void updateErunner(HttpServletRequest request, HttpServletResponse response,String userType)
+    throws SQLException, IOException {
+		System.out.println("updated1");
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserModel userPass = new UserDao().getUser(id);
+        //System.out.println("updated2");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String password = userPass.getPassword();
+        //String password = request.getParameter("password");
+        ErunnerModel erunner = new ErunnerDao().getByMainUserId(request.getParameter("erunnerid"));
+        System.out.println("updated2");
+        int erunnerid = Integer.parseInt(request.getParameter("erunnerid"));
+        System.out.println("updated3");
+        String aadhar = request.getParameter("aadhar");
+        
+        String jobs = request.getParameter("jobType");
+        System.out.println("updated4");
+        System.out.println("updated5");
+        UserModel user = new UserModel(id,name,email,phone,password,userType);
+        ErunnerModel updatedErunner = new ErunnerModel(erunnerid,aadhar,(short)1,jobs,userPass);
+        new UserDao().updateUser(user);
+        new ErunnerDao().update(updatedErunner);
+        
+        response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
+        //response.sendRedirect("list");
+    }
+	
+	static void updateUser(HttpServletRequest request, HttpServletResponse response,String userType)
+		    throws SQLException, IOException {
+				//System.out.println("updated1");
+		        int id = Integer.parseInt(request.getParameter("id"));
+		        UserModel userPass = new UserDao().getUser(id);
+		        //System.out.println("updated2");
+		        String name = request.getParameter("name");
+		        String email = request.getParameter("email");
+		        String phone = request.getParameter("phone");
+		        String password = userPass.getPassword();
+		        //String password = request.getParameter("password");
+
+		        UserModel user = new UserModel(id,name,email,phone,password,userType);
+		        new UserDao().updateUser(user);
+		        
+		        response.sendRedirect("/ErrandRunner/userHome.jsp");
+		        //response.sendRedirect("list");
+		    }
 }
 
 //private void homePage(HttpServletRequest request, HttpServletResponse response)

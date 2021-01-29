@@ -52,6 +52,17 @@ public class UserModel implements Model{
 		this.userType = userType;
 	}
 	
+	
+	
+	public UserModel(int id, String name, String email, String phone, String userType) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.userType = userType;
+	}
+
 	public UserModel(String name, String email, String phone, String password, String userType) {
 		super();
 		this.name = name;

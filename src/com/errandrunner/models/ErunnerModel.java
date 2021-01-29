@@ -9,8 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQuery;
+
 @Entity
 @Table(name="erunner")
+@NamedQuery(name="get_erunner_id", query="from ErunnerModel where userid= :userid")
 public class ErunnerModel implements Model {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

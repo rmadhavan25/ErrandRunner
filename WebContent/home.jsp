@@ -216,7 +216,7 @@ input[type=text]:focus, input[type=password]:focus {
 
   <!---login form with bg image*-->
 <div class="bg-img">
-  <form action="/user/sign-in" method="post" class="container">
+  <form action="user/sign-in" method="post" class="container">
     <h1>Login</h1>
 
     <label for="phone"><b>Phone Number</b></label>

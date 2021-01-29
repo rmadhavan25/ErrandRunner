@@ -11,7 +11,9 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.errandrunner.models.CookModel;
 import com.errandrunner.models.ErunnerModel;
+import com.errandrunner.models.UserDeliveryRequestModel;
 import com.errandrunner.models.UserModel;
+import com.errandrunner.models.UserServiceRequestModel;
 
 public class HibernateUtil {
  private static SessionFactory sessionFactory;
@@ -27,18 +29,21 @@ public class HibernateUtil {
     settings.put(Environment.URL, "jdbc:mysql://localhost:3306/errand_runner?useSSL=false");
     settings.put(Environment.USER, "root");
     settings.put(Environment.PASS, "sudha10");
-    settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+    settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5InnoDBDialect");
+    settings.put(Environment.STORAGE_ENGINE,"innodb");
 
     settings.put(Environment.SHOW_SQL, "true");
 
     settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-    settings.put(Environment.HBM2DDL_AUTO, "validate");
+    settings.put(Environment.HBM2DDL_AUTO, "update");
 
     configuration.setProperties(settings);
     configuration.addAnnotatedClass(UserModel.class);
     configuration.addAnnotatedClass(CookModel.class);
     configuration.addAnnotatedClass(ErunnerModel.class);
+    configuration.addAnnotatedClass(UserServiceRequestModel.class);
+    configuration.addAnnotatedClass(UserDeliveryRequestModel.class);
 
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
       .applySettings(configuration.getProperties()).build();
