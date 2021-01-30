@@ -5,17 +5,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript">
-function loginFunction() {
-	  var message = '${message}';
-	  //console.log(message);
-	  console.log("hi");
-	  if(message!=null){
-		  alert(message); 
-	  }
-	  
-}
-</script>
 
 <style>
 * {
@@ -204,6 +193,10 @@ input[type=text]:focus, input[type=password]:focus {
   to {opacity:1 ;}
 }
 
+#error {
+	color: red
+}
+
 </style>
 </head>
 <body >
@@ -216,7 +209,7 @@ input[type=text]:focus, input[type=password]:focus {
 
   <!---login form with bg image*-->
 <div class="bg-img">
-  <form action="user/sign-in" method="post" class="container">
+  <form action="/ErrandRunner/user/sign-in" method="post" class="container">
     <h1>Login</h1>
 
     <label for="phone"><b>Phone Number</b></label>
@@ -231,13 +224,13 @@ input[type=text]:focus, input[type=password]:focus {
     	String msg = request.getAttribute("message").toString();
     
     %>
-    <p> <%= request.getAttribute("message") %></p>
+    <p id="error"> <%= request.getAttribute("message") %></p>
     <%} %>
     
  
    
      
-    <p>Don't have an account? <a href="registerHome.jsp" style="color:dodgerblue">Register</a>.</p>
+    <p>Don't have an account? <a href="/ErrandRunner/registerHome.jsp" style="color:dodgerblue">Register</a>.</p>
   </form>
 </div>
 <!--  <span class="popuptext" id="myPopup">A Simple Popup!</span>-->

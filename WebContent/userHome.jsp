@@ -147,7 +147,7 @@ a.cardButton:hover, a.cardButton:active {
     <div class="myprofile-content">
       <a href="userProfile.jsp">My Profile</a>
       <a href="userHistory.jsp">Orders</a>
-      <a href="home.jsp">Logout</a>
+      <a href="/ErrandRunner/logout"">Logout</a>
     </div>
   </div> 
 </div>

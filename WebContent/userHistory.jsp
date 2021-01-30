@@ -1,3 +1,5 @@
+<%@page import="com.errandrunner.dao.UserDao"%>
+<%@page import="com.errandrunner.models.UserModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -90,7 +92,15 @@
 
 <section id="Services">
 <%
-List<UserServiceRequestModel> serviceList = new UserRequestDao().getUserServices("9655569935") ;
+Cookie cookies[] = request.getCookies();
+UserModel user = null;
+for(Cookie cookie: cookies) {
+	if(cookie.getName().equals("user")) {
+		int id = Integer.valueOf(cookie.getValue());
+		user = new UserDao().getUser(id);
+	}
+}
+List<UserServiceRequestModel> serviceList = new UserRequestDao().getUserServices(user.getPhone()) ;
 for(UserServiceRequestModel sl: serviceList ){
 	short slstatus = sl.getStatus();
 	//System.out.println(status);
@@ -124,7 +134,7 @@ for(UserServiceRequestModel sl: serviceList ){
 <h1 class ="side-headings" style="text-align:left;">Deliveries:</h1><hr>
 
 <%
-List<UserDeliveryRequestModel> deliveryList = new UserRequestDao().getUserDeliveries("9655569935") ;
+List<UserDeliveryRequestModel> deliveryList = new UserRequestDao().getUserDeliveries(user.getPhone()) ;
 for(UserDeliveryRequestModel dl : deliveryList ){
 	short status = dl.getStatus();
 	//System.out.println(status);
@@ -159,7 +169,7 @@ for(UserDeliveryRequestModel dl : deliveryList ){
 <h1 class ="side-headings" style="text-align:left;">Home Food:</h1><hr>
 
 <%
-List<CookDishModel> foodList = new UserRequestDao().getDishByUserPhone("9655569935");
+List<CookDishModel> foodList = new UserRequestDao().getDishByUserPhone(user.getPhone());
 for(CookDishModel dl : foodList ){
 	short status = dl.getStatus();
 	//System.out.println(status);

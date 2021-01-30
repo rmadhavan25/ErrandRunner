@@ -179,7 +179,7 @@ class Login {
 				cookie.setPath("/ErrandRunner");
 				response.addCookie(cookie);
 				if(user.getUserType().equals("user"))
-				response.sendRedirect("/ErrandRunner/userHome.jsp");
+					response.sendRedirect("/ErrandRunner/userHome.jsp");
 				else if(user.getUserType().equals("cook"))
 					response.sendRedirect("/ErrandRunner/cook-home.jsp");
 				else
@@ -188,7 +188,7 @@ class Login {
 			} else {
 				System.out.println("Invalid Password");
 				request.setAttribute("message", "Invalid Password");
-				response.sendRedirect(request.getHeader("Referer"));
+				request.getRequestDispatcher("/home.jsp").forward(request, response);
 				//new MainServlet().doGet(request, response);
 				//request.getRequestDispatcher("/home.jsp").forward(request, response);
 				//response.sendRedirect(request.getRequestURI());
@@ -197,7 +197,7 @@ class Login {
 		} else {
 			System.out.println("User doesn't exist");
 			request.setAttribute("message", "User doesn't exist");
-			response.sendRedirect(request.getHeader("Referer"));
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
 			//request.getRequestDispatcher("/home.jsp").forward(request, response);
 			
 		}

@@ -205,8 +205,7 @@ section{
 }
 
 .card:hover {
-    box-shadow: -15px 15px 28px #00CED1, 0 10px 10px #171717;
-    transform: scale(1.05);;
+    transform: scale(1.02);;
 }
 a.cardButton:hover, a.cardButton:active {
   background-color: #00CED1;
@@ -244,7 +243,7 @@ a.cardButton1:link, a.cardButton1:visited {
 
 .side-headings{
   color:#00CED1;
-  text-shadow: 2px 2px 4px #000000;
+  
 }
 </style>
 </head>
@@ -262,11 +261,12 @@ a.cardButton1:link, a.cardButton1:visited {
     <div class="myprofile-content">
       <a  style="color:black" href="cookProfile.jsp">My Profile</a>
       <a style="color:black" href="cookHistory.jsp">Orders</a>
-      <a style="color:black" href="home.jsp">Logout</a>
+      <a style="color:black" href="/ErrandRunner/logout">Logout</a>
     </div>
   </div> 
 </div>
 <br><br>
+<div style="padding:30px">
 <a class="cardButton" href="add-dish.jsp">+ Add Dish</a>
 
 <%
@@ -290,7 +290,7 @@ pageContext.setAttribute("cookid", cook.getId());
 %>
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
      url="jdbc:mysql://localhost:3306/errand_runner?useSSL=false"
-     user="root"  password="sudha10"/>
+     user="root"  password="root"/>
  
 
 <h1 class ="side-headings" style="text-align:left;">My Dishes:</h1><hr>
@@ -339,7 +339,7 @@ SELECT * from cookdish where cookid = ${cookid} ;
 </c:forEach>
 </section>
 
-
+</div>
 
 
 

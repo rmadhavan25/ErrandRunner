@@ -275,17 +275,18 @@ a.cardButton1:link, a.cardButton1:visited {
 %>
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
      url="jdbc:mysql://localhost:3306/errand_runner?useSSL=false"
-     user="root"  password="sudha10"/>
+     user="root"  password="root"/>
  
 
 <h1 class ="side-headings" style="text-align:left;">Available Dishes:</h1><hr>
 <sql:query dataSource="${snapshot}" var="result">
-SELECT * from cookdish where status = 0 ;
+SELECT cookdish.price, concat(cookdish.name,'') as dishname, users.name,  cookdish.id from cookdish, cook, users where cookdish.status = 0 and cook.id=cookdish.cookid and users.id=cook.userid;
 </sql:query>
 <section>
 <c:forEach var="row" items="${result.rows}">
 <article class="card">
-<h1>${row.name}</h1>
+<h1>${row.dishname}</h1>
+<h3 style="margin-top: -20px; margin-bottom: -20px">Cook: ${row.name}</h3>
 <p class="subcardline"><b>price: Rs</b>${row.price}</p>
 <a class="cardButton1" href="/ErrandRunner/user-request/home-food?dishId=${row.id}">Request</a>
 </article>
