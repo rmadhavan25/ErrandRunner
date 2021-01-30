@@ -42,7 +42,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 100px;
   text-align: center;
   font-family: arial;
   flex: 50%;
@@ -172,8 +172,17 @@ a.cardButton:hover, a.cardButton:active {
   <a class="cardButton" href="userDeliveryRequestForm.jsp">Go</a>
   <!--<a  class="cardButton" href="default.asp" target="_blank">Register</a>-->
 </div>
+
+<!---home food card-->
+<div class="card">
+  <img src="https://previews.123rf.com/images/moloko88/moloko881809/moloko88180900003/109815610-hand-drawn-typography-poster-inspirational-vector-typography-homemade-food-.jpg" alt="homefood" style="width:75%">
+  <h1>Home Food</h1>
+  <p class="title">Delicious Food<br> From any<br> home around you</p>
+  <a class="cardButton" href="userDishPage.jsp">Go</a>
+  <!--<a  class="cardButton" href="default.asp" target="_blank">Register</a>-->
 </div>
 
+</div>
 
 
 

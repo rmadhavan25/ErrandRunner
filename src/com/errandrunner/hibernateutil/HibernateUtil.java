@@ -9,6 +9,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.errandrunner.models.CookDishModel;
+import com.errandrunner.models.CookModel;
 //import com.errandrunner.models.CookDishModel;
 //import com.errandrunner.models.CookModel;
 import com.errandrunner.models.ErunnerModel;
@@ -41,11 +43,11 @@ public class HibernateUtil {
 
     configuration.setProperties(settings);
     configuration.addAnnotatedClass(UserModel.class);
-    //configuration.addAnnotatedClass(CookModel.class);
+    configuration.addAnnotatedClass(CookModel.class);
     configuration.addAnnotatedClass(ErunnerModel.class);
     configuration.addAnnotatedClass(UserServiceRequestModel.class);
     configuration.addAnnotatedClass(UserDeliveryRequestModel.class);
-    //configuration.addAnnotatedClass(CookDishModel.class);
+    configuration.addAnnotatedClass(CookDishModel.class);
     
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
       .applySettings(configuration.getProperties()).build();

@@ -271,7 +271,7 @@ input[type=text]:focus, input[type=password]:focus {
   </div>
 </div>
 
-<!-- The App Section 
+<!-- The App Section -->
 <div class="container-1">
   <div class="row-1">
     <div class="column-66">
@@ -285,7 +285,6 @@ input[type=text]:focus, input[type=password]:focus {
   </div>
 </div>
 
--->
 
 
 

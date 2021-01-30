@@ -34,6 +34,9 @@ public class UserModel implements Model{
 	 @Column(name="password")
 	 protected String password;
 	 
+	 @Column(name="homeAddress")
+	 protected String homeAddress;
+	 
 	 @Column(name="userType")
 	 protected String userType;
 	
@@ -63,13 +66,14 @@ public class UserModel implements Model{
 		this.userType = userType;
 	}
 
-	public UserModel(String name, String email, String phone, String password, String userType) {
+	public UserModel(String name, String email, String phone, String password, String userType,String address) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
 		this.userType = userType;
+		this.homeAddress = address;
 	}
 	
 	public int getId() {
@@ -118,6 +122,14 @@ public class UserModel implements Model{
 	
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+	
+	public String getUserAddress() {
+		return homeAddress;
+	}
+	
+	public void setUserAddress(String address) {
+		this.homeAddress = address;
 	}
  
 

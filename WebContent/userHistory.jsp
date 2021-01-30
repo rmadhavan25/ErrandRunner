@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="com.errandrunner.models.UserServiceRequestModel,com.errandrunner.models.UserDeliveryRequestModel,com.errandrunner.dao.UserRequestDao,java.util.*"%>
+<%@ page import="com.errandrunner.models.UserServiceRequestModel,com.errandrunner.models.UserDeliveryRequestModel,com.errandrunner.models.CookDishModel,com.errandrunner.dao.UserRequestDao,java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +116,6 @@ for(UserServiceRequestModel sl: serviceList ){
   <p class="price"><b>cost:</b> $19.99</p>
   <p><b>Status: </b>"${slstatus}"</p>
   <p><b>##<%=sl.getOrderid() %>: </b><%= sl.getDescription() %></p>
-  <p><button>More</button></p>
 </div>
 <%} %>
 </section>
@@ -152,12 +151,43 @@ for(UserDeliveryRequestModel dl : deliveryList ){
   <p><b>Status: </b>"${status}"</p>
   <p><b>##<%=dl.getDeliveryid() %>: </b><%=dl.getItems() %></p>
   <p><b>From: </b><%=dl.getPickupAddress() %></p>
-  <p><button>More</button></p>
 </div>
 <%} %>
 </section>
 
+<section id="HomeFood">
+<h1 class ="side-headings" style="text-align:left;">Home Food:</h1><hr>
 
+<%
+List<CookDishModel> foodList = new UserRequestDao().getDishByUserPhone("9655569935");
+for(CookDishModel dl : foodList ){
+	short status = dl.getStatus();
+	//System.out.println(status);
+	String currentStatus;
+	switch(status){
+	case 1:
+		currentStatus = "Order Placed";
+		break;
+	case 2:
+		currentStatus = "Order accepted and in process";
+		break;
+	case 3:
+		currentStatus = "Order Delivered Successfully";
+		break;
+	default:
+		currentStatus = "Oops Error!";
+		break;
+	}
+	pageContext.setAttribute("status", currentStatus);
+	%>
+	<div class="card">
+  <h1>Home Food</h1>
+  <p class="price"><b>cost:</b> Rs.<%=dl.getPrice() %></p>
+  <p><b>Status: </b>"${status}"</p>
+  <p><b>##<%=dl.getId() %>: </b><%=dl.getName() %></p>
+</div>
+<%} %>
+</section>
 
 </body>
 </html>
