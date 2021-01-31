@@ -218,7 +218,7 @@ class Transaction{
 			}
 			System.out.println(userCookie.getName()+": "+userCookie.getValue());	
 		}
-		ErunnerModel erunnerid = new ErunnerDao().getByMainUserId(userid1);
+		ErunnerModel erunnerid = new ErunnerDao().getByMainUserId(Integer.parseInt(userid1));
 		//UserServiceRequestModel tableUpdate;
 		//tableUpdate.set
 		//System.out.println("inside the required block 1");
@@ -250,7 +250,7 @@ class Transaction{
 			}
 			System.out.println(userCookie.getName()+": "+userCookie.getValue());	
 		}
-		ErunnerModel erunnerid = new ErunnerDao().getByMainUserId(userid1);
+		ErunnerModel erunnerid = new ErunnerDao().getByMainUserId(Integer.parseInt(userid1));
 		//UserServiceRequestModel tableUpdate;
 		//tableUpdate.set
 		//System.out.println("inside the required block 1");

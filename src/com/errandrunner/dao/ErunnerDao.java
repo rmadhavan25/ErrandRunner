@@ -106,7 +106,7 @@ public class ErunnerDao {
 	        return user;
 	    }
 	    
-	    public ErunnerModel getByMainUserId(String id) {
+	    public ErunnerModel getByMainUserId(int id) {
 
 	        Transaction transaction = null;
 	        ErunnerModel user = null;

@@ -244,7 +244,7 @@ class UpdateUser{
         String phone = request.getParameter("phone");
         String password = userPass.getPassword();
         //String password = request.getParameter("password");
-        ErunnerModel erunner = new ErunnerDao().getByMainUserId(request.getParameter("erunnerid"));
+        ErunnerModel erunner = new ErunnerDao().getByMainUserId(Integer.parseInt(request.getParameter("erunnerid")));
         System.out.println("updated2");
         int erunnerid = Integer.parseInt(request.getParameter("erunnerid"));
         System.out.println("updated3");

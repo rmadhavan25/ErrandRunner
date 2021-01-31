@@ -1,3 +1,5 @@
+<%@page import="com.errandrunner.dao.ErunnerDao"%>
+<%@page import="com.errandrunner.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -119,8 +121,9 @@ for(int i = 0;i<cookies.length;i++){
 	}
 	System.out.println(userCookie.getName()+": "+userCookie.getValue());	
 }
-List<UserServiceRequestModel> serviceList = new UserRequestDao().getUserServicesByErunnerId(Integer.parseInt(userid)) ;
-List<UserDeliveryRequestModel> deliveryList = new UserRequestDao().getUserDeliveriesByErunnerId(Integer.parseInt(userid));
+
+List<UserServiceRequestModel> serviceList = new UserRequestDao().getUserServicesByErunnerId(new ErunnerDao().getByMainUserId(Integer.parseInt(userid)).getId()) ;
+List<UserDeliveryRequestModel> deliveryList = new UserRequestDao().getUserDeliveriesByErunnerId(new ErunnerDao().getByMainUserId(Integer.parseInt(userid)).getId());
 %>
 <section id="current order">
 <%

@@ -41,11 +41,11 @@ public class MainServlet extends HttpServlet {
 				response.sendRedirect("/ErrandRunner/userHome.jsp");
 				return;
 			}
-			else if(cookie.getValue().equals("cook")) {
+			else if(cookie.getName().equals("cook")) {
 				response.sendRedirect("/ErrandRunner/cook-home.jsp");
 				return;
 			}
-			else if(cookie.getValue().equals("erunner")) {
+			else if(cookie.getName().equals("erunner")) {
 				response.sendRedirect("/ErrandRunner/erunnerHome.jsp");
 				return;
 			}
@@ -61,6 +61,7 @@ public class MainServlet extends HttpServlet {
 			String name = cookie.getName();
 			if(name.equals("user") || name.equals("cook") || name.equals("erunner")) {
 				cookie.setMaxAge(0);
+				res.addCookie(cookie);
 			}
 		}	
 	}
