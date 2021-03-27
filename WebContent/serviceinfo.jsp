@@ -122,7 +122,7 @@ a {
 
     
     <hr>
-    <button type="submit" class="registerbtn">Place Order</button>
+    <button type="submit" class="registerbtn">Accept</button>
   </div>
   
 </form>

@@ -5,6 +5,12 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 body {
@@ -22,6 +28,25 @@ body {
   background-color: white;
   width:100%;
   display:flex;
+}
+
+.container-1 {
+  padding: 64px;
+}
+
+.row-1:after {
+  content: "";
+  display: table;
+  clear: both
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  .row1 {
+	background-image:url("https://images.unsplash.com/photo-1500822976077-ea303cfdc9b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+	background-repeat: no-repeat;
+  	display: flex;
 }
 
 /* Full-width input fields */
@@ -261,11 +286,38 @@ a.cardButton:link, a.cardButton:visited {
 		//System.out.println("delivery is not null");
 	if(serviceList == null && deliveryList == null){%>
 			<%--System.out.println("in both"); --%>
-			<article class="card">
-    		<h1></h1>
-    		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    		<a class="cardButton" href="default.asp">Go</a>
-  			</article>
+			<div class="container-1" style="background-color:#f1f1f1">
+  <div class="row-1">
+    	<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+			<div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://images.unsplash.com/photo-1505582866941-6788e0205dd2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Los Angeles" width="1100" height="500">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1513430698680-03ff4d6be961?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Chicago" width="1100" height="500">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1513267048331-5611cad62e41?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80" alt="New York" width="1100" height="500">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+  </div>
+  </div>
+</div>
 	<%}
 	else if(serviceList != null){
 		//System.out.println("in service 1");
@@ -298,6 +350,21 @@ a.cardButton:link, a.cardButton:visited {
 %>
 
 </section>
+<script type="text/javascript">
+  var main = function () {
+    $('.card').on('mouseenter', function() {
+      $(this).find('.card-text').slideDown(300);
+    });
+  
+    $('.card').on('mouseleave', function(event) {
+       $(this).find('.card-text').css({
+         'display': 'none'
+       });
+     });
+};
+$(document).ready(main);
+
+</script>
   
  <!--   <article class="card">
     <h1>Card Title</h1>

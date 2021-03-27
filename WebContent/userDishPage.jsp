@@ -275,7 +275,7 @@ a.cardButton1:link, a.cardButton1:visited {
 %>
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
      url="jdbc:mysql://localhost:3306/errand_runner?useSSL=false"
-     user="root"  password="root"/>
+     user="root"  password="sudha10"/>
  
 
 <h1 class ="side-headings" style="text-align:left;">Available Dishes:</h1><hr>

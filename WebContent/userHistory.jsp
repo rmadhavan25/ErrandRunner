@@ -123,7 +123,7 @@ for(UserServiceRequestModel sl: serviceList ){
 	%>
 	<div class="card">
   <h1><%= sl.getJobType() %></h1>
-  <p class="price"><b>cost:</b> $19.99</p>
+  <p class="price"><b>cost:</b>Rs. 150/hr</p>
   <p><b>Status: </b>"${slstatus}"</p>
   <p><b>##<%=sl.getOrderid() %>: </b><%= sl.getDescription() %></p>
 </div>
@@ -157,7 +157,7 @@ for(UserDeliveryRequestModel dl : deliveryList ){
 	%>
 	<div class="card">
   <h1>Delivery</h1>
-  <p class="price"><b>cost:</b> $19.99</p>
+  <p class="price"><b>cost:</b>As per the bill/distance</p>
   <p><b>Status: </b>"${status}"</p>
   <p><b>##<%=dl.getDeliveryid() %>: </b><%=dl.getItems() %></p>
   <p><b>From: </b><%=dl.getPickupAddress() %></p>

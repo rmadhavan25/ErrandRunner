@@ -139,7 +139,7 @@ for(UserServiceRequestModel sl: serviceList ){
 		%>
 		<div class="card">
   		<h1><%= sl.getJobType() %></h1>
-  		<p class="price"><b>cost:</b> $19.99</p>
+  		<p class="price"><b>cost:</b>Rs.150/hr</p>
   		<p><b>Status: </b>"${slstatus}"</p>
  	 	<p><b>##<%=sl.getOrderid() %>: </b><%= sl.getDescription() %></p>
  	 	<p><b>Address: </b><%=sl.getAddress() %></p>
@@ -167,7 +167,7 @@ for(UserDeliveryRequestModel dl: deliveryList ){
 		%>
 		<div class="card">
   		<h1><%= dl.getItems() %></h1>
-  		<p class="price"><b>cost:</b> $19.99</p>
+  		<p class="price"><b>cost:</b>according to the bill/travel distance</p>
   		<p><b>Status: </b>"${dlstatus}"</p>
  	 	<p><b>##<%=dl.getDeliveryid() %>: </b><%= dl.getDescription() %></p>
  	 	<p><b>PickUp Address: </b><%=dl.getPickupAddress() %></p>
@@ -204,7 +204,7 @@ for(UserServiceRequestModel sl: serviceList ){
 		%>
 		<div class="card">
 		  <h1><%= sl.getJobType() %></h1>
-		  <p class="price"><b>cost:</b> $19.99</p>
+		  <p class="price"><b>cost:</b>Rs 150/hr</p>
 		  <p><b>Status: </b>"${slstatus}"</p>
 		  <p><b>##<%=sl.getOrderid() %>: </b><%= sl.getDescription() %></p>
 		  <p><b>Address: </b><%=sl.getAddress() %></p>
@@ -227,7 +227,7 @@ for(UserDeliveryRequestModel dl: deliveryList ){
 		%>
 		<div class="card">
   		<h1><%= dl.getItems() %></h1>
-  		<p class="price"><b>cost:</b> $19.99</p>
+  		<p class="price"><b>cost:</b> according to the bill/travel distance</p>
   		<p><b>Status: </b>"${dlstatus}"</p>
  	 	<p><b>##<%=dl.getDeliveryid() %>: </b><%= dl.getDescription() %></p>
  	 	<p><b>PickUp Address: </b><%=dl.getPickupAddress() %></p>

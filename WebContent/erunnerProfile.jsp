@@ -101,7 +101,7 @@ input[type=submit]:hover {
 	String email = user.getEmail();
 	String phone = user.getPhone();
 	int id = user.getId();
-	ErunnerModel erunner = new ErunnerDao().getByMainUserId(userid);
+	ErunnerModel erunner = new ErunnerDao().getByMainUserId(Integer.parseInt(userid));
 	
 	String aadhar = erunner.getAadhar();
 	String jobs = erunner.getJobs();
